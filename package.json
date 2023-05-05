@@ -1,0 +1,46 @@
+{
+  "name": "multiplayer-game-arch",
+  "version": "1.0.0",
+  "description": "A simple multiplayer game architecture.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "prettier": "prettier 'src/**/*.ts'",
+    "prettier:fix": "prettier --write 'src/**/*.ts'",
+    "createDeployment": "npm run lint:fix && npm run prettier:fix && npm run build",
+    "prod": "node ./dist",
+    "dev": "nodemon --watch 'src/**' --ext 'ts,json' --exec 'ts-node-esm ./src'",
+    "setupResouces": "rm -f -r redis redis-slave1 redis-slave2 && mkdir redis redis-slave1 redis-slave2 && redis-server redis-master.conf && redis-server redis-slave1.conf && redis-server redis-slave2.conf",
+    "shutDownResources": "redis-cli -p 6379 shutdown && redis-cli -p 6380 shutdown && redis-cli -p 6381 shutdown && rm -f -r redis redis-slave1 redis-slave2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-work:xlogn/multiplayer-game-arch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^18.16.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0",
+    "ts-node-dev": "^2.0.0",
+    "tslog": "^4.8.2"
+  }
+}
