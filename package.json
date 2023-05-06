@@ -13,8 +13,9 @@
     "createDeployment": "npm run lint:fix && npm run prettier:fix && npm run build",
     "prod": "node ./dist",
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --exec 'ts-node-esm ./src'",
-    "setupResouces": "rm -f -r redis redis-slave1 redis-slave2 && mkdir redis redis-slave1 redis-slave2 && redis-server redis-master.conf && redis-server redis-slave1.conf && redis-server redis-slave2.conf",
-    "shutDownResources": "redis-cli -p 6379 shutdown && redis-cli -p 6380 shutdown && redis-cli -p 6381 shutdown && rm -f -r redis redis-slave1 redis-slave2"
+    "installResources": "brew install kafka && brew install redis",
+    "startResouces": "rm -f -r redis redis-slave1 redis-slave2 && mkdir redis redis-slave1 redis-slave2 && redis-server redis-master.conf && redis-server redis-slave1.conf && redis-server redis-slave2.conf && brew services start zookeeper && brew services start kafka",
+    "stopResources": "redis-cli -p 6379 shutdown && redis-cli -p 6380 shutdown && redis-cli -p 6381 shutdown && rm -f -r redis redis-slave1 redis-slave2 && brew services stop zookeeper && brew services stop kafka"
   },
   "repository": {
     "type": "git",

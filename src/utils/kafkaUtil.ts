@@ -34,6 +34,7 @@ export async function publishDataForAPinCode(pinCode: number) {
     data[GAME_TYPE.CAPTURE_THE_FLAG] = captureTheFlag;
     data[GAME_TYPE.TEAM_DEATH_MATCH] = teamDeathMatch;
     logger.info(JSON.stringify(data));
+    publishDataToKafka(JSON.stringify(data), `DATA_FOR_${pinCode}`);
 }
 
 
