@@ -3,5 +3,6 @@ export const TOPICS = {
 }
 
 export const GROUPS = {
-    TRAFFIC: "TRAFFIC"
+    TRAFFIC: "TRAFFIC",
+    TRAFFIC_CONSUMER: "TRAFFIC_CONSUMER"
 }

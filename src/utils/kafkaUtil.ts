@@ -54,3 +54,20 @@ await trafficUpdateConsumer.run({
         publishDataForAPinCode(updateTrafficData.pinCode);
     }
 });
+
+
+/*
+EXAMPLE FOR CLIENT SIDE CODE
+Below I am making a consumer for a pincode which would be on client side,
+The client would use this consumer to read data for a particular pinCode,
+in this example : 100
+*/
+const pinCodeWhereClientIs = 100;
+const clientConsumer = kafka.consumer({groupId: GROUPS.TRAFFIC_CONSUMER});
+await clientConsumer.connect();
+await clientConsumer.subscribe({topic: `DATA_FOR_${pinCodeWhereClientIs}`});
+await clientConsumer.run({
+    eachMessage: async({ topic, message })=> {
+        logger.debug(`FRONTEND CLIENT ::: Received message from topic ${topic} : ${message.value.toString()}`);
+    }
+});
